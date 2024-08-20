@@ -22,7 +22,9 @@ int _main(struct thread *td) {
   SceUserServiceLoginUserIdList userIdList;
   memset_s(&userIdList, sizeof(SceUserServiceLoginUserIdList), 0, sizeof(SceUserServiceLoginUserIdList));
 
-  printf_notification("Running History Blocker");
+  char fw_version[6] = {0};
+  get_firmware_string(fw_version);
+  printf_notification("Running History Blocker\nPS4 Firmware %s", fw_version);
 
   if (getUserIDList(&userIdList) == 0) {
     for (int i = 0; i < SCE_USER_SERVICE_MAX_LOGIN_USERS; i++) {
